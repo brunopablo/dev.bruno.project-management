@@ -27,7 +27,7 @@ public class ProjectEntity {
     
     private LocalDate endDate;
 
-    @OneToMany(mappedBy="projectEntity")
+    @OneToMany(mappedBy="projectId")
     private List<TaskEntity> tasks;
 
     public ProjectEntity() {
