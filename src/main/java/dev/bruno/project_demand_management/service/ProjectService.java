@@ -12,8 +12,8 @@ import dev.bruno.project_demand_management.controller.dto.ApiResponse;
 import dev.bruno.project_demand_management.controller.dto.CreateProjectRequest;
 import dev.bruno.project_demand_management.controller.dto.ListProjectsResponse;
 import dev.bruno.project_demand_management.controller.dto.PaginationResponse;
-import dev.bruno.project_demand_management.controller.repository.ProjectRepository;
 import dev.bruno.project_demand_management.entity.ProjectEntity;
+import dev.bruno.project_demand_management.repository.ProjectRepository;
 
 @Service
 public class ProjectService {

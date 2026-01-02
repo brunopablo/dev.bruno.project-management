@@ -1,4 +1,4 @@
-package dev.bruno.project_demand_management.controller.repository;
+package dev.bruno.project_demand_management.repository;
 
 import java.util.UUID;
 
