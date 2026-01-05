@@ -47,22 +47,15 @@ public class ProjectService {
 
         var pageRequest = getPageRequest(pageNumber, pageSize, orderBy);
 
-        var page = getPageContent(pageRequest);
+        var pages = getPageContent(pageRequest);
         
         var apiResponse = new ApiResponse<>(
-            page.getContent().stream().map(
-                content -> new ListProjectsResponse(
-                    content.getName(),
-                    content.getDescription(),
-                    content.getStartDate(),
-                    content.getEndDate()
-                )
-            ).toList(),
+            pages.getContent(),
             new PaginationResponse(
-                page.getNumber(),    
-                page.getSize(),    
-                page.getTotalElements(),    
-                page.getTotalPages()    
+                pages.getNumber(),    
+                pages.getSize(),    
+                pages.getTotalElements(),    
+                pages.getTotalPages()    
             )
         );
 
@@ -84,7 +77,6 @@ public class ProjectService {
         if (orderBy.equalsIgnoreCase("asc"))
             orderByDirection = Sort.Direction.ASC;
 
-        
         return PageRequest.of(
             pageNumber,
             pageSize,

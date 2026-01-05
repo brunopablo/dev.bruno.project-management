@@ -32,7 +32,7 @@ public class TaskEntity {
     
     @ManyToOne
     @JoinColumn(name="fk_project_id")
-    private ProjectEntity projectId;
+    private ProjectEntity projectEntity;
     
     public TaskEntity() {
     }
@@ -51,7 +51,7 @@ public class TaskEntity {
         this.status = status;
         this.priority = priority;
         this.dueDate = dueDate;
-        this.projectId = projectId;
+        this.projectEntity = projectId;
     }
     
     public Long getId() {
@@ -102,11 +102,11 @@ public class TaskEntity {
         this.dueDate = dueDate;
     }
     
-    public ProjectEntity getProjectId() {
-        return projectId;
+    public ProjectEntity getProjectEntity() {
+        return projectEntity;
     }
     
-    public void setProjectId(ProjectEntity projectId) {
-        this.projectId = projectId;
+    public void setProjectEntity(ProjectEntity projectId) {
+        this.projectEntity = projectId;
     }
 }
