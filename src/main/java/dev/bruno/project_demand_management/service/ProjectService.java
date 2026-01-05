@@ -10,20 +10,21 @@ import org.springframework.stereotype.Service;
 
 import dev.bruno.project_demand_management.controller.dto.ApiResponse;
 import dev.bruno.project_demand_management.controller.dto.CreateProjectRequest;
-import dev.bruno.project_demand_management.controller.dto.ListProjectsResponse;
-import dev.bruno.project_demand_management.controller.dto.PaginationResponse;
 import dev.bruno.project_demand_management.entity.ProjectEntity;
 import dev.bruno.project_demand_management.repository.ProjectRepository;
+import dev.bruno.project_demand_management.util.mapper.DoMapper;
 
 @Service
 public class ProjectService {
     
-    private ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
+    private final DoMapper doMapper;
     
-    public ProjectService(ProjectRepository projectRepository) {
+    public ProjectService(ProjectRepository projectRepository, DoMapper doMapper) {
         this.projectRepository = projectRepository;
+        this.doMapper = doMapper;
     }
-    
+
     public UUID createProject(CreateProjectRequest createProjectRequest) {
         
         var projectEntity = projectRepository.save(
@@ -50,12 +51,12 @@ public class ProjectService {
         var pages = getPageContent(pageRequest);
         
         var apiResponse = new ApiResponse<>(
-            pages.getContent(),
-            new PaginationResponse(
+            doMapper.toListProjectResponse(pages.getContent()),
+            doMapper.toPaginationResponse(
                 pages.getNumber(),    
                 pages.getSize(),    
                 pages.getTotalElements(),    
-                pages.getTotalPages()    
+                pages.getTotalPages()
             )
         );
 

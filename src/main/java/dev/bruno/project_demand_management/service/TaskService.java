@@ -12,26 +12,25 @@ import org.springframework.web.server.ResponseStatusException;
 
 import dev.bruno.project_demand_management.controller.dto.ApiResponse;
 import dev.bruno.project_demand_management.controller.dto.CreateTaskRequest;
-import dev.bruno.project_demand_management.controller.dto.PaginationResponse;
 import dev.bruno.project_demand_management.entity.ProjectEntity;
 import dev.bruno.project_demand_management.entity.TaskEntity;
 import dev.bruno.project_demand_management.repository.ProjectRepository;
 import dev.bruno.project_demand_management.repository.TaskRepository;
 import dev.bruno.project_demand_management.util.enums.PriorityEnum;
 import dev.bruno.project_demand_management.util.enums.StatusEnum;
-import dev.bruno.project_demand_management.util.mapper.TaskMapper;
+import dev.bruno.project_demand_management.util.mapper.DoMapper;
 
 @Service
 public class TaskService {
     
     private final ProjectRepository projectRepository;
     private final TaskRepository taskRepository;
-    private final TaskMapper taskMapper;
+    private final DoMapper doMapper;
 
-    public TaskService(ProjectRepository projectRepository, TaskRepository taskRepository, TaskMapper taskMapper) {
+    public TaskService(ProjectRepository projectRepository, TaskRepository taskRepository, DoMapper taskMapper) {
         this.projectRepository = projectRepository;
         this.taskRepository = taskRepository;
-        this.taskMapper = taskMapper;
+        this.doMapper = taskMapper;
     }
 
     public Long createTask(CreateTaskRequest createTaskRequest) {
@@ -55,23 +54,24 @@ public class TaskService {
     }
 
     public ApiResponse listTask(
-            Integer pageNumber,
-            Integer pageSize,
-            String orderBy,
-            StatusEnum status,
-            PriorityEnum priority,
-            UUID projectId) {
+        Integer pageNumber,
+        Integer pageSize,
+        String orderBy,
+        StatusEnum status,
+        PriorityEnum priority,
+        UUID projectId
+    ) {
 
         var pageRequest = getPageRequest(pageNumber, pageSize, orderBy);
 
         var pages = getPages(status, priority, projectId, pageRequest);
 
         var apiResponse = new ApiResponse<>(
-            taskMapper.toListTaskResponse(pages.getContent()),
-            new PaginationResponse(
-                pages.getNumber(),
-                pages.getSize(),
-                pages.getTotalElements(),
+            doMapper.toListTaskResponse(pages.getContent()),
+            doMapper.toPaginationResponse(
+                pages.getNumber(),    
+                pages.getSize(),    
+                pages.getTotalElements(),    
                 pages.getTotalPages()
             )
         );
@@ -79,7 +79,12 @@ public class TaskService {
         return apiResponse;
 	}
 
-    private Page<TaskEntity> getPages(StatusEnum status, PriorityEnum priority, UUID projectId, PageRequest pageRequest) {
+    private Page<TaskEntity> getPages(
+        StatusEnum status,
+        PriorityEnum priority,
+        UUID projectId,
+        PageRequest pageRequest
+    ) {
 
         ProjectEntity projectEntity = null;
 

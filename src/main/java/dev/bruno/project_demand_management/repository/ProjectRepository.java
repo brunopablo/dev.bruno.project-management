@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 import dev.bruno.project_demand_management.entity.ProjectEntity;
 
 @Repository
-public interface ProjectRepository extends JpaRepository<ProjectEntity, UUID>{
-
-}
+public interface ProjectRepository extends JpaRepository<ProjectEntity, UUID>{}

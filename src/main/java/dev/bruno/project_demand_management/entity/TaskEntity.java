@@ -38,13 +38,13 @@ public class TaskEntity {
     }
     
     public TaskEntity(
-            Long id,
-            String title,
-            String description,
-            StatusEnum status,
-            PriorityEnum priority,
-            LocalDate dueDate,
-            ProjectEntity projectId) {
+        Long id,
+        String title,
+        String description,
+        StatusEnum status,
+        PriorityEnum priority,
+        LocalDate dueDate,
+        ProjectEntity projectId) {
         this.id = id;
         this.title = title;
         this.description = description;
