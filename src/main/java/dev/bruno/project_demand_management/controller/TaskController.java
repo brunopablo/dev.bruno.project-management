@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.bruno.project_demand_management.controller.dto.ApiResponse;
 import dev.bruno.project_demand_management.controller.dto.CreateTaskRequest;
 import dev.bruno.project_demand_management.service.TaskService;
-import dev.bruno.project_demand_management.util.PriorityEnum;
-import dev.bruno.project_demand_management.util.StatusEnum;
+import dev.bruno.project_demand_management.util.enums.PriorityEnum;
+import dev.bruno.project_demand_management.util.enums.StatusEnum;
 import jakarta.validation.Valid;
 
 @RestController

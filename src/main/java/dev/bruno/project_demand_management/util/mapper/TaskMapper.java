@@ -1,4 +1,4 @@
-package dev.bruno.project_demand_management.mapper;
+package dev.bruno.project_demand_management.util.mapper;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package dev.bruno.project_demand_management.entity;
 
 import java.time.LocalDate;
 
-import dev.bruno.project_demand_management.util.PriorityEnum;
-import dev.bruno.project_demand_management.util.StatusEnum;
+import dev.bruno.project_demand_management.util.enums.PriorityEnum;
+import dev.bruno.project_demand_management.util.enums.StatusEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

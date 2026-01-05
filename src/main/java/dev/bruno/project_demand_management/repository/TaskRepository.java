@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import dev.bruno.project_demand_management.entity.ProjectEntity;
 import dev.bruno.project_demand_management.entity.TaskEntity;
-import dev.bruno.project_demand_management.util.PriorityEnum;
-import dev.bruno.project_demand_management.util.StatusEnum;
+import dev.bruno.project_demand_management.util.enums.PriorityEnum;
+import dev.bruno.project_demand_management.util.enums.StatusEnum;
 
 @Repository
 public interface TaskRepository extends JpaRepository<TaskEntity, Long> {

@@ -15,11 +15,11 @@ import dev.bruno.project_demand_management.controller.dto.CreateTaskRequest;
 import dev.bruno.project_demand_management.controller.dto.PaginationResponse;
 import dev.bruno.project_demand_management.entity.ProjectEntity;
 import dev.bruno.project_demand_management.entity.TaskEntity;
-import dev.bruno.project_demand_management.mapper.TaskMapper;
 import dev.bruno.project_demand_management.repository.ProjectRepository;
 import dev.bruno.project_demand_management.repository.TaskRepository;
-import dev.bruno.project_demand_management.util.PriorityEnum;
-import dev.bruno.project_demand_management.util.StatusEnum;
+import dev.bruno.project_demand_management.util.enums.PriorityEnum;
+import dev.bruno.project_demand_management.util.enums.StatusEnum;
+import dev.bruno.project_demand_management.util.mapper.TaskMapper;
 
 @Service
 public class TaskService {
