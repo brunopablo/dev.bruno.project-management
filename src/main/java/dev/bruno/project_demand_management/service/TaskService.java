@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import dev.bruno.project_demand_management.controller.dto.ApiResponse;
 import dev.bruno.project_demand_management.controller.dto.CreateTaskRequest;
+import dev.bruno.project_demand_management.controller.dto.UpdateStatusRequest;
 import dev.bruno.project_demand_management.entity.ProjectEntity;
 import dev.bruno.project_demand_management.entity.TaskEntity;
 import dev.bruno.project_demand_management.repository.ProjectRepository;
@@ -105,5 +106,22 @@ public class TaskService {
             orderByDirection = Sort.Direction.ASC;
 
         return PageRequest.of(pageNumber, pageSize, orderByDirection, "title");
+    }
+
+    public void updateStatusTask(Long taskId, UpdateStatusRequest newStatus) {
+
+        var taskEntity = taskRepository.findById(taskId).orElseThrow(
+            () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Task não encontrada")
+        );
+
+        taskEntity.setStatus(newStatus.status());
+        taskRepository.save(taskEntity);
+    }
+
+    public void deleteTask(Long taskId) {
+        if (taskRepository.existsById(taskId) == false)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Task não encontrada");
+
+        taskRepository.deleteById(taskId);
     } 
 }

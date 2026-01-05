@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.bruno.project_demand_management.controller.dto.ApiResponse;
 import dev.bruno.project_demand_management.controller.dto.CreateTaskRequest;
+import dev.bruno.project_demand_management.controller.dto.UpdateStatusRequest;
 import dev.bruno.project_demand_management.service.TaskService;
 import dev.bruno.project_demand_management.util.enums.PriorityEnum;
 import dev.bruno.project_demand_management.util.enums.StatusEnum;
@@ -46,14 +50,29 @@ public class TaskController {
         @RequestParam(value="projectId", required=false) UUID projectId
     ) {
         var apiResponse = taskService.listTask(
-            pageNumber,
-            pageSize,
-            orderBy,
-            status,
-            priority,
-            projectId
-        );
+                pageNumber,
+                pageSize,
+                orderBy,
+                status,
+                priority,
+                projectId);
 
         return ResponseEntity.ok().body(apiResponse);
+    }
+
+    @PutMapping("/{taskId}/status")
+    public ResponseEntity<Void> updateStatusTask(@PathVariable Long taskId, @RequestBody UpdateStatusRequest newStatus) {
+
+        taskService.updateStatusTask(taskId, newStatus);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {
+    
+        taskService.deleteTask(taskId);
+
+        return ResponseEntity.noContent().build();
     }
 }

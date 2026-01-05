@@ -30,7 +30,7 @@ public class ProjectController {
 
         var projectId = projectService.createProject(createProjectRequest);
 
-        return ResponseEntity.created(URI.create("/projects" + projectId)).build();
+        return ResponseEntity.created(URI.create("/projects/" + projectId)).build();
     }
     
     @GetMapping
