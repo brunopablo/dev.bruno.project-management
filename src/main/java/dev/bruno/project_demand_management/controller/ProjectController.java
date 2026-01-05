@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/projects")
 public class ProjectController {
 
-    private ProjectService projectService;
+    private final ProjectService projectService;
 
     public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
@@ -30,7 +30,7 @@ public class ProjectController {
 
         var projectId = projectService.createProject(createProjectRequest);
 
-        return ResponseEntity.created(URI.create("/projects" + projectId)).build();
+        return ResponseEntity.created(URI.create("/projects/" + projectId)).build();
     }
     
     @GetMapping

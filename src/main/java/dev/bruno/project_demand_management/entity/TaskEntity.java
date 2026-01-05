@@ -2,8 +2,8 @@ package dev.bruno.project_demand_management.entity;
 
 import java.time.LocalDate;
 
-import dev.bruno.project_demand_management.util.PriorityEnum;
-import dev.bruno.project_demand_management.util.StatusEnum;
+import dev.bruno.project_demand_management.util.enums.PriorityEnum;
+import dev.bruno.project_demand_management.util.enums.StatusEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,26 +32,26 @@ public class TaskEntity {
     
     @ManyToOne
     @JoinColumn(name="fk_project_id")
-    private ProjectEntity projectId;
+    private ProjectEntity projectEntity;
     
     public TaskEntity() {
     }
     
     public TaskEntity(
-            Long id,
-            String title,
-            String description,
-            StatusEnum status,
-            PriorityEnum priority,
-            LocalDate dueDate,
-            ProjectEntity projectId) {
+        Long id,
+        String title,
+        String description,
+        StatusEnum status,
+        PriorityEnum priority,
+        LocalDate dueDate,
+        ProjectEntity projectId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
         this.priority = priority;
         this.dueDate = dueDate;
-        this.projectId = projectId;
+        this.projectEntity = projectId;
     }
     
     public Long getId() {
@@ -102,11 +102,11 @@ public class TaskEntity {
         this.dueDate = dueDate;
     }
     
-    public ProjectEntity getProjectId() {
-        return projectId;
+    public ProjectEntity getProjectEntity() {
+        return projectEntity;
     }
     
-    public void setProjectId(ProjectEntity projectId) {
-        this.projectId = projectId;
+    public void setProjectEntity(ProjectEntity projectId) {
+        this.projectEntity = projectId;
     }
 }
